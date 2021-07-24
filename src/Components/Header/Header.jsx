@@ -15,9 +15,9 @@ export default function Header() {
         width="100%"
         height="100px"
       >
-        <Logo />
-        <Navbar />
-        <LogIn />
+        <Logo width="25%"/>
+        <Navbar width="50%" />
+        <LogIn width="25%" />
       </Box>
     </header>
   );
