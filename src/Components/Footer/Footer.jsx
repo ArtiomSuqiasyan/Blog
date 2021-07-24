@@ -15,9 +15,9 @@ export default function Footer() {
         width="100%"
         height="100px"
       >
-        <MenuFooter />
-        <Copyright />
-        <FooterIcons />
+        <MenuFooter width="25%" />
+        <Copyright width="50%" />
+        <FooterIcons width="25%" />
       </Box>
     </footer>
   );

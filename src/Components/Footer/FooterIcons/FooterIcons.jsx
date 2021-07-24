@@ -5,10 +5,10 @@ import TwitterIcon from '@material-ui/icons/Twitter'
 import YouTubeIcon from '@material-ui/icons/YouTube'
 
 
-export default function FooterIcons(){
+export default function FooterIcons({width}){
   return (
     <Box
-    width="25%"
+    width={width}
     display="flex"
     justifyContent="space-around"
     alignItems="center"

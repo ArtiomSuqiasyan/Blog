@@ -1,9 +1,9 @@
 import Box from "@material-ui/core/Box";
 
 
-export default function Copyright(){
+export default function Copyright({width}){
   return (
-    <Box width="50%" textAlign="center">
+    <Box width={width} textAlign="center">
           @Copyright 2021
         </Box>
   )
