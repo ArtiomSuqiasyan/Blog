@@ -11,7 +11,7 @@ export default function Footer() {
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        bgcolor="yellow"
+        bgcolor="#1a1146"
         width="100%"
         height="100px"
       >
