@@ -1,82 +1,118 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import classes from "./authentication.module.css";
+import Header from "../../Components/Header/Header";
+import Footer from "../../Components/Footer/Footer";
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+export default class SignIn extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      isValidEmail: false,
+      isValidPassword: false,
+    };
+  }
 
-export default function SignIn() {
-  const classes = useStyles();
+  handleChangeEmail = (e) => {
+    this.setState({ email: e.target.value });
+    const mailCheck =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          LogIn
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            LogIn
-          </Button>
-          
-        </form>
-      </div>
-    </Container>
-  );
+    const isValid = mailCheck.test(e.target.value);
+    if (isValid) {
+      this.setState({ isValidEmail: true, emailError: "" });
+    } else if (e.target.value === "") {
+      this.setState({ isValidEmail: false, emailError: "" });
+    } else {
+      this.setState({
+        emailError: "Please, enter valid email!",
+        isValidEmail: false,
+      });
+    }
+  };
+
+  handleChangePassword = (e) => {
+    this.setState({ password: e.target.value });
+    const passwordCheck =
+      /^(?=.*[0-9])(?=.*[!@#$%^&*?])[a-zA-Z0-9!@#$%^&*?]{6,16}$/;
+    const isValid = passwordCheck.test(e.target.value);
+    if (isValid) {
+      this.setState({ isValidPassword: true, passwordError: "" });
+    } else if (e.target.value === "") {
+      this.setState({ isValidPassword: false });
+    } else {
+      this.setState({
+        isValidPassword: false,
+        passwordError: "Please, enter valid password",
+      });
+    }
+  };
+
+  render() {
+    const checkValidation =
+      this.state.isValidEmail && this.state.isValidPassword;
+    return (
+      <>
+        <Header />
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              LogIn
+            </Typography>
+            <form className={classes.form} noValidate>
+              <TextField
+                value={this.state.email}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                onChange={this.handleChangeEmail}
+              />
+              <TextField
+                value={this.state.password}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={this.handleChangePassword}
+              />
+              <Button
+                className={classes.submit}
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                disabled={!checkValidation}
+              >
+                LogIn
+              </Button>
+            </form>
+          </div>
+        </Container>
+        <Footer />
+      </>
+    );
+  }
 }

@@ -11,9 +11,10 @@ export default function Footer() {
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        bgcolor="#1a1146"
+        bgcolor="#000"
         width="100%"
-        height="100px"
+        minHeight="100px"
+        marginTop="100px"
       >
         <MenuFooter width="25%" />
         <Copyright width="50%" />

@@ -6,13 +6,13 @@ export default function MenuFooter({width}) {
     <Box width={width}>
       <List component="nav" aria-label="main mailbox folders">
         <ListItem>
-          <Link href="#">About us</Link>
+          <Link href="/about" color="#000">About us</Link>
         </ListItem>
         <ListItem>
-          <Link href="google.com">Privacy policy</Link>
+          <Link href="/privacy" color="#000">Privacy policy</Link>
         </ListItem>
         <ListItem>
-          <Link href="google.com">Terms of use</Link>
+          <Link href="/terms" color="#000">Terms of use</Link>
         </ListItem>
       </List>
     </Box>

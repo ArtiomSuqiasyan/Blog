@@ -10,7 +10,7 @@ export default function LogIn({width}) {
     alignItems="center"
     justifyContent="center"
     >
-      <Button href="google.com" variant="outlined" color="secondary">
+      <Button href="/login" variant="contained" color="primary">
         Log in
       </Button>
     </Box>
