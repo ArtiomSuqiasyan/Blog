@@ -3,7 +3,11 @@ import { Link, List, ListItem } from "@material-ui/core";
 
 export default function MenuFooter({width}) {
   return (
-    <Box width={width}>
+    <Box width={width}
+    height="100%"
+    display="flex"
+    justifyContent="space-around"
+    alignItems="center">
       <List component="nav" aria-label="main mailbox folders">
         <ListItem>
           <Link href="/about" color="initial">About us</Link>

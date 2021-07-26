@@ -6,9 +6,9 @@ import TextField from "@material-ui/core/TextField";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import classes from "./authentication.module.css";
-import Header from "../../Components/Header/Header";
-import Footer from "../../Components/Footer/Footer";
+import classes from "./SignIn.module.css";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 export default class SignIn extends React.Component {
   constructor(props) {

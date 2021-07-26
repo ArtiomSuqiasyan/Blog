@@ -4,7 +4,7 @@ import About from "./Pages/About/About";
 import Terms from "./Pages/Terms/Terms";
 import Privacy from "./Pages/Privacy/Privacy";
 import Home from "./Pages/Home/Home";
-import SignIn from "./Pages/authentication/authentication";
+import SignIn from "./Components/SignIn/SignIn";
 
 function App() {
   return (
