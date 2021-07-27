@@ -16,8 +16,8 @@ export default function Navbar({ width }) {
       >
         Home
       </Button>
-      <Button href="/blogs" variant="contained" color="primary" >
-        Blogs
+      <Button href="/create-post" variant="contained" color="primary" >
+        Create Post
       </Button>
     </Box>
   );

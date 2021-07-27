@@ -14,7 +14,7 @@ export default function Footer() {
         bgcolor="#000"
         width="100%"
         minHeight="100px"
-        marginTop="100px"
+        marginTop="200px"
       >
         <MenuFooter width="25%" />
         <Copyright width="50%" />

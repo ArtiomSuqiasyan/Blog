@@ -1,12 +1,12 @@
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
-import Posts from "../../Components/Posts/Posts"
+import CreatePost from "../../Components/CreatePost/CreatePost";
 
-export default function Home() {
+export default function About() {
   return (
     <>
       <Header />
-      <Posts />
+      <CreatePost />
       <Footer />
     </>
   );
