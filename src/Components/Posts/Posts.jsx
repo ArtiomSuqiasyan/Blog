@@ -11,7 +11,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,9 +54,14 @@ export default function RecipeReviewCard() {
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          <>
+            <IconButton aria-label="settings">
+              <EditIcon />
+            </IconButton>
+            <IconButton aria-label="settings">
+              <DeleteForeverIcon  />
+            </IconButton>
+          </>
         }
         title="Shrimp and Chorizo Paella"
         subheader="September 14, 2016"
@@ -69,7 +75,6 @@ export default function RecipeReviewCard() {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-       
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
