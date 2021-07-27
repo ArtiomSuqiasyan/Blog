@@ -55,6 +55,7 @@ export default class SignIn extends React.Component {
   };
 
   onRegister = () => {
+
     localStorage.setItem("user",JSON.stringify({email:this.state.email, password: this.state.password}))
   };
 
