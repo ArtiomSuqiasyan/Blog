@@ -28,12 +28,11 @@ export default class SignIn extends React.Component {
 
     const isValid = mailCheck.test(e.target.value);
     if (isValid) {
-      this.setState({ isValidEmail: true, emailError: "" });
+      this.setState({ isValidEmail: true });
     } else if (e.target.value === "") {
-      this.setState({ isValidEmail: false, emailError: "" });
+      this.setState({ isValidEmail: false });
     } else {
       this.setState({
-        emailError: "Please, enter valid email!",
         isValidEmail: false,
       });
     }
@@ -45,15 +44,18 @@ export default class SignIn extends React.Component {
       /^(?=.*[0-9])(?=.*[!@#$%^&*?])[a-zA-Z0-9!@#$%^&*?]{6,16}$/;
     const isValid = passwordCheck.test(e.target.value);
     if (isValid) {
-      this.setState({ isValidPassword: true, passwordError: "" });
+      this.setState({ isValidPassword: true });
     } else if (e.target.value === "") {
       this.setState({ isValidPassword: false });
     } else {
       this.setState({
         isValidPassword: false,
-        passwordError: "Please, enter valid password",
       });
     }
+  };
+
+  onRegister = () => {
+    localStorage.setItem("user",JSON.stringify({email:this.state.email, password: this.state.password}))
   };
 
   render() {
@@ -105,6 +107,7 @@ export default class SignIn extends React.Component {
                 variant="contained"
                 color="primary"
                 disabled={!checkValidation}
+                onClick={this.onRegister}
               >
                 LogIn
               </Button>
