@@ -1,5 +1,6 @@
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import { login } from "../../../Constants/LogIn";
 
 export default function LogIn({width}) {
   return (
@@ -11,7 +12,7 @@ export default function LogIn({width}) {
     justifyContent="center"
     >
       <Button href="/login" variant="contained" color="primary">
-        Log in
+      { login }
       </Button>
     </Box>
   );

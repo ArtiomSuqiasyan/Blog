@@ -1,18 +1,23 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Authorization from "./Components/SignIn/Authorization";
 import CreatePost from "./Pages/CreatePost/CreatePost";
-import About from "./Pages/About/About";
-import Terms from "./Pages/Terms/Terms";
-import Privacy from "./Pages/Privacy/Privacy";
-import SignIn from "./Components/SignIn/SignIn";
 import Home from "./Pages/Home/Home";
-import LogOut from "./Components/LogOut/LogOut"
+import About from "./Pages/About/About";
+import Privacy from "./Pages/Privacy/Privacy";
+import Terms from "./Pages/Terms/Terms";
+import { Redirect } from "react-router";
 
 export default class Blog extends React.Component {
   state = {
-    posts: [],
-    users: [],
-    loged: false,
+    posts: JSON.parse(localStorage.getItem("posts")) || [],
+    logged: false,
+  };
+
+  handleAutorization = (props) => (e) => {
+    e.stopPropagation();
+    this.setState({ logged: !this.state.logged });
+    localStorage.setItem(`${props.name}`, JSON.stringify(props));
   };
 
   handleAddPost = (prop) => (e) => {
@@ -21,6 +26,8 @@ export default class Blog extends React.Component {
   };
 
   render() {
+    localStorage.setItem("posts", JSON.stringify(this.state.posts));
+    // const { logged, posts } = this.state;
     return (
       <Router>
         <Switch>
@@ -37,14 +44,14 @@ export default class Blog extends React.Component {
             <Terms />
           </Route>
           <Route path="/login">
-            {(this.state.loged && <LogOut />) || <SignIn />}
+            <Authorization />
           </Route>
           <Route path="/create-post">
-            <CreatePost />
+            {localStorage.getItem("user") ? <CreatePost /> :  <Redirect to="/login" />}
+           
           </Route>
         </Switch>
       </Router>
     );
   }
 }
-          
