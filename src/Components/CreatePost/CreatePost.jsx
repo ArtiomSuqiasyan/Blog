@@ -18,7 +18,7 @@ export default class CreatePost extends React.Component {
 
   handleSubmit = () => {
     const prevLocalStorage = JSON.parse(localStorage.getItem("posts"))
-    const currentPost = [...prevLocalStorage, [this.state.title, this.state.info, this.state.method]]
+    const currentPost = [...prevLocalStorage, {title: this.state.title, info: this.state.info, method: this.state.method}]
     localStorage.setItem("posts", JSON.stringify(currentPost))
     this.setState({
       title: "",
