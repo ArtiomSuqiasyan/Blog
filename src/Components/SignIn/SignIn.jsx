@@ -63,7 +63,6 @@ export default class SignIn extends React.Component {
         isLoged: true,
       })
     );
-    window.location.href = '/'
   };
 
   render() {

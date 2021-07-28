@@ -6,7 +6,6 @@ import Button from "@material-ui/core/Button";
 
 export default class CreatePost extends React.Component {
   render() {
-    const logged = localStorage.getItem("user") ? true : false
     return (
       <div>
         <h2>Create post</h2>
@@ -15,7 +14,6 @@ export default class CreatePost extends React.Component {
           <InputLabel>Title</InputLabel>
           <Input
             id="title"
-            // onChange={this.handleChange("title")}
           />
         </FormControl>
 
@@ -24,8 +22,16 @@ export default class CreatePost extends React.Component {
           <Input
             id="info"
             multiline
+            rows={2}
+          />
+        </FormControl>
+
+        <FormControl fullWidth>
+          <InputLabel>Method</InputLabel>
+          <Input
+            id="method"
+            multiline
             rows={6}
-            // onChange={this.handleChange("info")}
           />
         </FormControl>
 

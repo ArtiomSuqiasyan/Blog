@@ -1,1 +1,0 @@
-export const login = localStorage.getItem("user") ? "Logout" : "Login"

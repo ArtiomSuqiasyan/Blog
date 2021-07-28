@@ -1,5 +1,9 @@
-import SignIn from "./SignIn"
+import SignIn from "./SignIn";
 
-export default function Authorization({logged, autorization}) {
-    return <SignIn logged={logged} autorization={autorization}/>
+export default function Authorization({ logged, authorization }) {
+  return (
+    <>
+      <SignIn logged={logged} authorization={authorization} />
+    </>
+  );
 }

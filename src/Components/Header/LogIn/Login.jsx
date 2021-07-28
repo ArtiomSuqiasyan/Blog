@@ -1,6 +1,5 @@
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import { login } from "../../../Constants/LogIn";
 
 export default function LogIn({width}) {
   return (
@@ -11,9 +10,14 @@ export default function LogIn({width}) {
     alignItems="center"
     justifyContent="center"
     >
+      {localStorage.getItem("user") ? 
+      <Button href="/logout" variant="contained" color="primary">
+      LogOut
+      </Button> 
+      : 
       <Button href="/login" variant="contained" color="primary">
-      { login }
-      </Button>
+      LogIn
+      </Button> }
     </Box>
   );
 }
