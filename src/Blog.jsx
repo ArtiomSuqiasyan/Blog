@@ -14,7 +14,7 @@ export default class Blog extends React.Component {
     logged: false,
   };
 
-  handleAutorization = (props) => (e) => {
+  handleAuthorization = (props) => (e) => {
     e.stopPropagation();
     this.setState({ logged: !this.state.logged });
     localStorage.setItem(`${props.name}`, JSON.stringify(props));
@@ -27,7 +27,6 @@ export default class Blog extends React.Component {
 
   render() {
     localStorage.setItem("posts", JSON.stringify(this.state.posts));
-    // const { logged, posts } = this.state;
     return (
       <Router>
         <Switch>
