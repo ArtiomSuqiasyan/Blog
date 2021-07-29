@@ -43,12 +43,12 @@ export default class Blog extends React.Component {
           <Route path="/terms">
             <Terms />
           </Route>
-          <Route path="/login">
+          <Route path="/sign-in">
             <Authorization />
           </Route>
-          <Route path="/logout">
-            <LogOut />
-          </Route>
+          {/* <Route path="/signin">
+             />
+          </Route> */}
 
           <Route path="/create-post">
             {localStorage.getItem("user") ? (

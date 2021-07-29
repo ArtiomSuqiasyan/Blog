@@ -14,12 +14,46 @@ export default class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: "",
+      surname: "",
       email: "",
       password: "",
+      isValidName: false,
+      isValidSurname: false,
       isValidEmail: false,
       isValidPassword: false,
     };
   }
+
+  handleChangeName = (e) => {
+    this.setState({ name: e.target.value });
+    const nameCheck = /^[a-zA-Z ]{1,30}$/
+    const isValid = nameCheck.test(e.target.value);
+    if (isValid) {
+      this.setState({ isValidName: true });
+    } else if (e.target.value === "") {
+      this.setState({ isValidName: false });
+    } else {
+      this.setState({
+        isValidName: false,
+      });
+    }
+  };
+
+  handleChangeSurname = (e) => {
+    this.setState({ surname: e.target.value });
+    const surnameCheck = /^[a-zA-Z ]{1,30}$/
+    const isValid = surnameCheck.test(e.target.value);
+    if (isValid) {
+      this.setState({ isValidSurname: true });
+    } else if (e.target.value === "") {
+      this.setState({ isValidSurname: false });
+    } else {
+      this.setState({
+        isValidSurname: false,
+      });
+    }
+  };
 
   handleChangeEmail = (e) => {
     this.setState({ email: e.target.value });
@@ -55,9 +89,12 @@ export default class SignIn extends React.Component {
   };
 
   onRegister = () => {
+    const user = JSON.stringify(this.state.email)
     localStorage.setItem(
-      "user",
+      user,
       JSON.stringify({
+        name: this.state.name,
+        surname: this.state.surname,
         email: this.state.email,
         password: this.state.password,
         isLoged: true,
@@ -67,7 +104,7 @@ export default class SignIn extends React.Component {
 
   render() {
     const checkValidation =
-      this.state.isValidEmail && this.state.isValidPassword;
+      this.state.isValidEmail && this.state.isValidPassword && this.state.isValidName && this.state.isValidPassword;
     return (
       <>
         <Header />
@@ -78,9 +115,33 @@ export default class SignIn extends React.Component {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              LogIn
+              Sign in
             </Typography>
             <form className={classes.form} noValidate>
+            <TextField
+                value={this.state.name}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="name"
+                label="Name"
+                name="name"
+                autoFocus
+                onChange={this.handleChangeName}
+              />
+              <TextField
+                value={this.state.surname}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="surname"
+                label="Surname"
+                name="surname"
+                autoFocus
+                onChange={this.handleChangeSurname}
+              />
               <TextField
                 value={this.state.email}
                 variant="outlined"
@@ -116,7 +177,7 @@ export default class SignIn extends React.Component {
                 disabled={!checkValidation}
                 onClick={this.onRegister}
               >
-                LogIn
+                Sign in
               </Button>
             </form>
           </div>
