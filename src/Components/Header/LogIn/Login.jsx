@@ -1,11 +1,9 @@
 import Button from "@material-ui/core/Button";
 
-export default function LogIn({ width }) {
+export default function LogIn() {
   return (
     <>
-      {/* <Button href="/logout" variant="contained" color="primary">
-          LogOut
-        </Button> */}
+    
 
       <Button href="/login" variant="contained" color="primary">
         LogIn

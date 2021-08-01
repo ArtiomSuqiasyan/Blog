@@ -7,7 +7,7 @@ import About from "./Pages/About/About";
 import Privacy from "./Pages/Privacy/Privacy";
 import Terms from "./Pages/Terms/Terms";
 import { Redirect } from "react-router";
-import LogOut from "./Components/LogOut/LogOut";
+import Login from "./Components/Login/Login"
 
 export default class Blog extends React.Component {
   state = {
@@ -46,9 +46,9 @@ export default class Blog extends React.Component {
           <Route path="/sign-in">
             <Authorization />
           </Route>
-          {/* <Route path="/signin">
-             />
-          </Route> */}
+          <Route path="/login">
+             <Login />
+          </Route>
 
           <Route path="/create-post">
             {localStorage.getItem("user") ? (
