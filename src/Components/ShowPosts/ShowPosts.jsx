@@ -4,7 +4,7 @@ import RecipeReviewCard from "../Post/Post";
 export default function ShowPosts() {
   const posts = JSON.parse(localStorage.getItem("posts"));
   return (
-    <Box display="flex">
+    <Box display="flex" justifyContent="space-between" flexWrap="wrap" >
       {posts.map((post) => {
         return (
           <RecipeReviewCard
