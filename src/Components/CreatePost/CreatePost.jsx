@@ -5,12 +5,12 @@ import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 
 export default class CreatePost extends React.Component {
-
   state = {
     title: "",
     info: "",
     method: "",
-    id: JSON.parse(localStorage.getItem("currentUser"))[0].id
+    userId: JSON.parse(localStorage.getItem("currentUser"))[0].id,
+    postId: 1
   };
 
   handleChange = (props) => (event) => {
@@ -18,18 +18,33 @@ export default class CreatePost extends React.Component {
   };
 
   handleSubmit = () => {
-    const prevLocalStorage = JSON.parse(localStorage.getItem("posts"))
-    const currentPost = [...prevLocalStorage, {title: this.state.title, info: this.state.info, method: this.state.method, id: this.state.id}]
-    localStorage.setItem("posts", JSON.stringify(currentPost))
-    this.setState({
+    const prevLocalStorage = JSON.parse(localStorage.getItem("posts"));
+    const currentPost = [
+      ...prevLocalStorage,
+      {
+        title: this.state.title,
+        info: this.state.info,
+        method: this.state.method,
+        userId: this.state.userId,
+        postId: this.state.postId
+      },
+    ];
+    localStorage.setItem("posts", JSON.stringify(currentPost));
+    this.setState((prevId) =>{
+      return {
       title: "",
       info: "",
       method: "",
-    })
+      postId: prevId.postId + 1
+      }
+    });
   };
 
   render() {
-    const emptyInputValues = this.state.title === "" || this.state.info === "" || this.state.method === ""
+    const emptyInputValues =
+      this.state.title === "" ||
+      this.state.info === "" ||
+      this.state.method === "";
     return (
       <div>
         <h2>Create post</h2>
@@ -39,7 +54,7 @@ export default class CreatePost extends React.Component {
           <Input
             id="title"
             value={this.state.title}
-            onChange={this.handleChange("title")} 
+            onChange={this.handleChange("title")}
           />
         </FormControl>
 

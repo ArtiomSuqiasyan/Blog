@@ -13,6 +13,7 @@ import { red } from "@material-ui/core/colors";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,14 +40,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function RecipeReviewCard({ title, info, method }) {
+export default function RecipeReviewCard({ title, info, method, id }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -58,7 +58,9 @@ export default function RecipeReviewCard({ title, info, method }) {
         action={
           <>
             <IconButton aria-label="settings">
-              <EditIcon />
+              <Button> 
+               <EditIcon  /> 
+              </Button>
             </IconButton>
             <IconButton aria-label="settings">
               <DeleteForeverIcon />
@@ -66,7 +68,7 @@ export default function RecipeReviewCard({ title, info, method }) {
           </>
         }
         title={title}
-        subheader="September 14, 2016"
+        subheader={"Date and time"}
       />
 
       <CardContent>
