@@ -10,6 +10,7 @@ import classes from "./SignIn.module.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import getID from "../../helpers/getID";
+import { Redirect } from "react-router-dom";
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -67,7 +68,7 @@ export default class SignIn extends React.Component {
         this.setState({
           isExistEmail: "You're registered, please login",
         });
-        break
+        break;
       } else {
         this.setState({
           isExistEmail: "",
@@ -125,6 +126,9 @@ export default class SignIn extends React.Component {
         },
       ])
     );
+    <Redirect to="/create-post"/>;
+    
+
   };
 
   render() {
@@ -134,6 +138,7 @@ export default class SignIn extends React.Component {
       this.state.isValidName &&
       this.state.isValidPassword &&
       !this.state.isExistEmail;
+
     return (
       <>
         <Header />
@@ -203,7 +208,7 @@ export default class SignIn extends React.Component {
                 variant="contained"
                 color="primary"
                 disabled={!checkValidation}
-                onClick={() => this.onRegister()}
+                onClick={this.onRegister}
               >
                 Sign in
               </Button>

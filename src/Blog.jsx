@@ -8,6 +8,7 @@ import Privacy from "./Pages/Privacy/Privacy";
 import Terms from "./Pages/Terms/Terms";
 import { Redirect } from "react-router";
 import Login from "./Components/Login/Login"
+import Logout from "./Components/LogOut/LogOut"
 
 export default class Blog extends React.Component {
   state = {
@@ -46,12 +47,18 @@ export default class Blog extends React.Component {
           <Route path="/sign-in">
             <Authorization />
           </Route>
+         
+          {localStorage.getItem("users") ? 
+          <Route path="/logout">
+            <Logout />
+          </Route>   :
           <Route path="/login">
              <Login />
           </Route>
+          }
 
           <Route path="/create-post">
-            {localStorage.getItem("user") ? (
+            {localStorage.getItem("users") ? (
               <CreatePost />
             ) : (
               <Redirect to="/login" />

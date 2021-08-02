@@ -18,8 +18,11 @@ export default function Header() {
       >
         <Logo />
         <Navbar />
+        
         <LogIn />
+        {localStorage.getItem("users") ? null : 
         <SignIn />
+        }
       </Box>
     </header>
   );

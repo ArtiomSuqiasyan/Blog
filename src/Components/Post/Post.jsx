@@ -16,7 +16,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 400,
+    width: "300px",
     margin: "10px",
     border: "1px solid #333",
   },
@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
+  method: {
+    wordWrap: "break-word"
+  }
 }));
 
 export default function RecipeReviewCard({ title, info, method }) {
@@ -88,7 +91,7 @@ export default function RecipeReviewCard({ title, info, method }) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
+          <Typography paragraph className={classes.method} >
             {method}
           </Typography>
         </CardContent>
