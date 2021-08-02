@@ -4,7 +4,7 @@ export default function LogIn({ width }) {
   return (
     <>
       
-      {localStorage.getItem("users") ? <Button href="/logout" variant="contained" color="primary">
+      {localStorage.getItem("currentUser") ? <Button href="/logout" variant="contained" color="primary">
           LogOut
         </Button> :
 

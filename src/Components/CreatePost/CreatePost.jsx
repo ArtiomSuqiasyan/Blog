@@ -10,7 +10,7 @@ export default class CreatePost extends React.Component {
     title: "",
     info: "",
     method: "",
-    id: JSON.parse(localStorage.getItem("users"))[0].id
+    id: JSON.parse(localStorage.getItem("currentUser"))[0].id
   };
 
   handleChange = (props) => (event) => {

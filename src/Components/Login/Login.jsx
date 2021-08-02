@@ -17,13 +17,14 @@ export default class Login extends React.Component {
       email: "",
       password: "",
       isExistEmail: "",
+      isWrongPassword: "",
       isValidEmail: false,
       isValidPassword: false,
     };
   }
 
   handleChangeEmail = (e) => {
-    this.setState({ email: e.target.value });
+    this.setState({ email: e.target.value, isExistEmail: "" });
     const mailCheck =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -40,7 +41,7 @@ export default class Login extends React.Component {
   };
 
   handleChangePassword = (e) => {
-    this.setState({ password: e.target.value });
+    this.setState({ password: e.target.value, isWrongPassword: "" });
     const passwordCheck =
       /^(?=.*[0-9])(?=.*[!@#$%^&*?])[a-zA-Z0-9!@#$%^&*?]{6,16}$/;
     const isValid = passwordCheck.test(e.target.value);
@@ -61,29 +62,24 @@ export default class Login extends React.Component {
       : [];
 
     let getEmail = false;
-    let id
+    let id;
     for (let i = 0; i < users.length; i++) {
       if (users[i].email === this.state.email) {
         getEmail = true;
-        id = i
+        id = i;
       }
     }
     if (!getEmail) {
       this.setState({
         isExistEmail: "Email not found, please register",
       });
-    } else if(users[id].password === this.state.password) {
+    } else if (users[id].password !== this.state.password) {
       this.setState({
-        isExistEmail: "",
+        isWrongPassword: "Wrong password!",
       });
-      users[id].isLoged = true;
-      JSON.stringify(localStorage.setItem("users", users))
-      
     } else {
-      alert("wrong password")
+      localStorage.setItem("currentUser", JSON.stringify([users[id]]));
     }
-
-    
   };
 
   render() {
@@ -130,6 +126,7 @@ export default class Login extends React.Component {
                 autoComplete="current-password"
                 onChange={this.handleChangePassword}
               />
+              <p>{this.state.isWrongPassword}</p>
               <Button
                 className={classes.submit}
                 type="submit"
