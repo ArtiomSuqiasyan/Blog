@@ -48,7 +48,7 @@ export default class Blog extends React.Component {
             <Authorization />
           </Route>
          
-          {localStorage.getItem("users") ? 
+          {localStorage.getItem("currentUser") ? 
           <Route path="/logout">
             <Logout />
           </Route>   :
@@ -58,7 +58,7 @@ export default class Blog extends React.Component {
           }
 
           <Route path="/create-post">
-            {localStorage.getItem("users") ? (
+            {localStorage.getItem("currentUser") ? (
               <CreatePost />
             ) : (
               <Redirect to="/login" />

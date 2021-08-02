@@ -1,7 +1,7 @@
 import SignIn from "../SignIn/SignIn";
 
 export default function LogOut() {
-  localStorage.removeItem("users");
+  localStorage.removeItem("currentUser");
 
   return (
     <>

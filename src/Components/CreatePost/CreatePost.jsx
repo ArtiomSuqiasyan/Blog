@@ -10,6 +10,7 @@ export default class CreatePost extends React.Component {
     title: "",
     info: "",
     method: "",
+    id: JSON.parse(localStorage.getItem("users"))[0].id
   };
 
   handleChange = (props) => (event) => {
@@ -18,7 +19,7 @@ export default class CreatePost extends React.Component {
 
   handleSubmit = () => {
     const prevLocalStorage = JSON.parse(localStorage.getItem("posts"))
-    const currentPost = [...prevLocalStorage, {title: this.state.title, info: this.state.info, method: this.state.method}]
+    const currentPost = [...prevLocalStorage, {title: this.state.title, info: this.state.info, method: this.state.method, id: this.state.id}]
     localStorage.setItem("posts", JSON.stringify(currentPost))
     this.setState({
       title: "",

@@ -20,7 +20,8 @@ export default function Header() {
         <Navbar />
         
         <LogIn />
-        {localStorage.getItem("users") ? null : 
+        
+        {localStorage.getItem("currentUser") ? null : 
         <SignIn />
         }
       </Box>

@@ -10,7 +10,6 @@ import classes from "./SignIn.module.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import getID from "../../helpers/getID";
-import { Redirect } from "react-router-dom";
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -122,11 +121,22 @@ export default class SignIn extends React.Component {
           surname: this.state.surname,
           email: this.state.email,
           password: this.state.password,
-          isLoged: true,
         },
       ])
     );
-    <Redirect to="/create-post"/>;
+
+    localStorage.setItem(
+      "currentUser",
+      JSON.stringify([
+        {
+          id: getID(users),
+          name: this.state.name,
+          surname: this.state.surname,
+          email: this.state.email,
+          password: this.state.password,
+        },
+      ])
+    )
     
 
   };
