@@ -13,7 +13,6 @@ import { red } from "@material-ui/core/colors";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,17 +35,25 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
   method: {
-    wordWrap: "break-word"
-  }
+    wordWrap: "break-word",
+  },
 }));
 
-export default function RecipeReviewCard({ title, info, method, id }) {
+const deletePost = (postId) => {
+  const posts = JSON.parse(localStorage.getItem("posts"))
+  const newPosts = posts.filter(el => el.postId !== postId);
+  localStorage.setItem("posts", JSON.stringify(newPosts))
+  window.location.reload();
+}
+
+export default function RecipeReviewCard({ title, info, method, postId }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -57,12 +64,10 @@ export default function RecipeReviewCard({ title, info, method, id }) {
         }
         action={
           <>
-            <IconButton aria-label="settings">
-              <Button> 
-               <EditIcon  /> 
-              </Button>
-            </IconButton>
-            <IconButton aria-label="settings">
+              <IconButton aria-label="settings" >
+                <EditIcon />
+              </IconButton>
+            <IconButton aria-label="settings" onClick={() => deletePost(postId)}>
               <DeleteForeverIcon />
             </IconButton>
           </>
@@ -72,7 +77,7 @@ export default function RecipeReviewCard({ title, info, method, id }) {
       />
 
       <CardContent>
-      <Typography paragraph>Info:</Typography>
+        <Typography paragraph>Info:</Typography>
         <Typography variant="body2" color="textSecondary" component="p">
           {info}
         </Typography>
@@ -93,7 +98,7 @@ export default function RecipeReviewCard({ title, info, method, id }) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Method:</Typography>
-          <Typography paragraph className={classes.method} >
+          <Typography paragraph className={classes.method}>
             {method}
           </Typography>
         </CardContent>
