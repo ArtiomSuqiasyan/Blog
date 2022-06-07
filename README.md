@@ -1,6 +1,6 @@
 # Project description
 
-Simple implementation of Todo in React, pure functionality without styles. The project was made while learning React.
+Simple implementation of Blog in React, pure functionality without styles. The project was made while learning React.
 For authorization used local storage. 
 
 ## How to install
